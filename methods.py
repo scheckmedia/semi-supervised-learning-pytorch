@@ -52,14 +52,14 @@ def train_sup(label_loader, model, criterions, optimizer, epoch, args):
         end = time.time()
 
         if i % args.print_freq == 0:
-            print('Epoch: [{0}][{1}/{2}]\t'
+            print(('Epoch: [{0}][{1}/{2}]\t'
                   'Time {batch_time.val:.3f} ({batch_time.avg:.3f})\t'
                   'Data {data_time.val:.3f} ({data_time.avg:.3f})\t'
                   'Loss {loss.val:.4f} ({loss.avg:.4f})\t'
                   'Prec@1 {top1.val:.3f} ({top1.avg:.3f})\t'
                   'Prec@5 {top5.val:.3f} ({top5.avg:.3f})'.format(
                    epoch, i, len(label_iter), batch_time=batch_time,
-                   data_time=data_time, loss=losses, top1=top1, top5=top5))
+                   data_time=data_time, loss=losses, top1=top1, top5=top5)))
     
     return top1.avg , losses.avg
 
@@ -140,7 +140,7 @@ def train_pi(label_loader, unlabel_loader, model, criterions, optimizer, epoch, 
         end = time.time()
 
         if i % args.print_freq == 0:
-            print('Epoch: [{0}][{1}/{2}]\t'
+            print(('Epoch: [{0}][{1}/{2}]\t'
                   'Time {batch_time.val:.3f} ({batch_time.avg:.3f})\t'
                   'Data {data_time.val:.3f} ({data_time.avg:.3f})\t'
                   'Loss {loss.val:.4f} ({loss.avg:.4f})\t'
@@ -149,7 +149,7 @@ def train_pi(label_loader, unlabel_loader, model, criterions, optimizer, epoch, 
                   'Prec@5 {top5.val:.3f} ({top5.avg:.3f})'.format(
                    epoch, i, len_iter, batch_time=batch_time,
                    data_time=data_time, loss=losses, loss_pi=losses_pi,
-                   top1=top1, top5=top5))
+                   top1=top1, top5=top5)))
     
     return top1.avg , losses.avg, losses_pi.avg, weights_cl.avg
 
@@ -239,7 +239,7 @@ def train_mt(label_loader, unlabel_loader, model, model_teacher, criterions, opt
         end = time.time()
 
         if i % args.print_freq == 0:
-            print('Epoch: [{0}][{1}/{2}]\t'
+            print(('Epoch: [{0}][{1}/{2}]\t'
                   'Time {batch_time.val:.3f} ({batch_time.avg:.3f})\t'
                   'Data {data_time.val:.3f} ({data_time.avg:.3f})\t'
                   'Loss {loss.val:.4f} ({loss.avg:.4f})\t'
@@ -250,7 +250,7 @@ def train_mt(label_loader, unlabel_loader, model, model_teacher, criterions, opt
                   'PrecT@5 {top5_t.val:.3f} ({top5_t.avg:.3f})'.format(
                    epoch, i, len_iter, batch_time=batch_time,
                    data_time=data_time, loss=losses, loss_cl=losses_cl,
-                   top1=top1, top5=top5, top1_t=top1_t, top5_t=top5_t))
+                   top1=top1, top5=top5, top1_t=top1_t, top5_t=top5_t)))
     
     return top1.avg , losses.avg, losses_cl.avg, top1_t.avg, weights_cl.avg
 
@@ -292,24 +292,24 @@ def validate(val_loader, model, criterions, args, mode = 'valid'):
  
             if i % args.print_freq == 0:
                 if mode == 'test':
-                    print('Test: [{0}/{1}]\t'
+                    print(('Test: [{0}/{1}]\t'
                           'Time {batch_time.val:.3f} ({batch_time.avg:.3f})\t'
                           'Loss {loss.val:.4f} ({loss.avg:.4f})\t'
                           'Prec@1 {top1.val:.3f} ({top1.avg:.3f})\t'
                           'Prec@5 {top5.val:.3f} ({top5.avg:.3f})'.format(
                            i, len(val_loader), batch_time=batch_time, loss=losses,
-                           top1=top1, top5=top5))
+                           top1=top1, top5=top5)))
                 else:
-                    print('Valid: [{0}/{1}]\t'
+                    print(('Valid: [{0}/{1}]\t'
                           'Time {batch_time.val:.3f} ({batch_time.avg:.3f})\t'
                           'Loss {loss.val:.4f} ({loss.avg:.4f})\t'
                           'Prec@1 {top1.val:.3f} ({top1.avg:.3f})\t'
                           'Prec@5 {top5.val:.3f} ({top5.avg:.3f})'.format(
                            i, len(val_loader), batch_time=batch_time, loss=losses,
-                           top1=top1, top5=top5))
+                           top1=top1, top5=top5)))
 
-    print(' ****** Prec@1 {top1.avg:.3f} Prec@5 {top5.avg:.3f} Loss {loss.avg:.3f} '
-          .format(top1=top1, top5=top5, loss=losses))
+    print((' ****** Prec@1 {top1.avg:.3f} Prec@5 {top5.avg:.3f} Loss {loss.avg:.3f} '
+          .format(top1=top1, top5=top5, loss=losses)))
 
     return top1.avg, losses.avg
 
